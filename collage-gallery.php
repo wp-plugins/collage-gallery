@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Collage Gallery
-Description: Plugin automatically create responsive collage gallery (like Google, Flickr, VK.com...) from images attached to the post.
-Version: 0.1
+Description: Plugin automatically create responsive collage gallery (like Google, Flickr, VK.com...) from images attached to the post with lightbox.
+Version: 0.2
 Plugin URI: http://ukraya.ru/collage-gallery/
 Author: Aleksej Solovjov
 Author URI: http://ukraya.ru
@@ -83,10 +83,14 @@ function ug_wp_head () {
   */
 }  
   
-add_action ('wp_footer', 'ug_wp_footer');
+add_action ('wp_footer', 'ug_wp_footer', 5);
 function ug_wp_footer() {
   $options = get_option('ug_options');
-
+  
+  if (isset($options['lightbox']) && $options['lightbox'] == 'photoswipe') {
+    echo ug_pswp();
+  }
+  
   // http://miromannino.github.io/Justified-Gallery/options-and-events/
 ?>
 <script type="text/javascript" >
@@ -130,19 +134,111 @@ function ug_wp_footer() {
     });
     
   });
+  
 </script>
 <?php
+
+
 }
 
 add_action('wp_enqueue_scripts', 'ug_enqueue_scripts');
 function ug_enqueue_scripts () {
-
-  wp_enqueue_script( 'justifiedGallery', plugins_url('js/jquery.justifiedGallery.min.js', __FILE__), array('jquery') );
+  $options = get_option('ug_options');
   
+  wp_enqueue_script( 'justifiedGallery', plugins_url('js/jquery.justifiedGallery.min.js', __FILE__), array('jquery') );
+ 
   wp_register_style( 'justifiedGallery', plugins_url('css/justifiedGallery.min.css', __FILE__) );
   wp_enqueue_style( 'justifiedGallery' );    
+  
+  if (isset($options['lightbox']) && $options['lightbox'] == 'photoswipe') {
+  
+    // PhotoSwipe
+    wp_enqueue_script( 'photoswipe', plugins_url('js/photoswipe.min.js', __FILE__), array(), false, true );
+    wp_enqueue_script( 'photoswipe-ui-default', plugins_url('js/photoswipe-ui-default.min.js', __FILE__), array('photoswipe'), false, true );  
+    
+    wp_register_style( 'photoswipe', plugins_url('css/photoswipe.css', __FILE__) );
+    wp_enqueue_style( 'photoswipe' );      
+    wp_register_style( 'photoswipe-default-skin', plugins_url('css/default-skin/default-skin.css', __FILE__) );
+    wp_enqueue_style( 'photoswipe-default-skin' );  
+    
+    // Collage Gallery
+    wp_enqueue_script( 'collage-gallery', plugins_url('js/collage-gallery.min.js', __FILE__), array('photoswipe', 'photoswipe-ui-default'), false, true );  
+  }
+    
 }  
 
+function ug_pswp () {
+
+  $out = '
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+  <!-- Background of PhotoSwipe. 
+  Its a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg"></div>
+
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+
+    <!-- Container that holds slides. 
+      PhotoSwipe keeps only 3 of them in the DOM to save memory.
+      Dont modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+
+      <div class="pswp__top-bar">
+
+        <!--  Controls are self-explanatory. Order can be changed. -->
+
+        <div class="pswp__counter"></div>
+
+        <button class="pswp__button pswp__button--close" title="' . __( 'Close (Esc)', 'collage-gallery' ) . '"></button>
+
+        <button class="pswp__button pswp__button--share" title="' . __( 'Share', 'collage-gallery' ) . '"></button>
+
+        <button class="pswp__button pswp__button--fs" title="' . __( 'Toggle fullscreen', 'collage-gallery' ) . '"></button>
+
+        <button class="pswp__button pswp__button--zoom" title="' . __( 'Zoom in/out', 'collage-gallery' ) . '"></button>
+
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut"></div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip"></div> 
+      </div>
+
+      <button class="pswp__button pswp__button--arrow--left" title="' . __( 'Previous (arrow left)', 'collage-gallery' ) . '">
+      </button>
+
+      <button class="pswp__button pswp__button--arrow--right" title="' . __( 'Next (arrow right)', 'collage-gallery' ) . '">
+      </button>
+
+      <div class="pswp__caption">
+        <div class="pswp__caption__center"></div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>';
+  return $out;  
+}
 
 // photo = "1,3,4-12"
 function ug_gallery_helper ($photo) {
@@ -209,7 +305,15 @@ function ug_shortcode ($atts = array(), $content = '') {
       
       // Images link
       $link = get_permalink($image->ID);
-      $src = wp_get_attachment_image_src( $image->ID, 'large' );
+      $src = wp_get_attachment_image_src( $image->ID, 'medium' );
+      
+      // PhotoSwipe
+      $data_size = '';
+      if (isset($options['lightbox']) && $options['lightbox'] == 'photoswipe') {
+        $src_full = wp_get_attachment_image_src( $image->ID, 'large' );
+        $data_size = 'data-size = "'.$src_full[1].'x'.$src_full[2].'"';
+        $options['link'] = 'image';
+      }
       
       if (isset($photo_num_show) && !empty($photo_num_show)){
         if (!in_array($i, $photo_num_show)){
@@ -225,7 +329,7 @@ function ug_shortcode ($atts = array(), $content = '') {
       
       $options['link'] = isset($options['link']) ? $options['link'] : 'page';
       
-      $img = '<img alt="'.$title.'" src="'.$src[0].'"/>';   
+      $img = '<img alt="'.$title.'" src="'.$src[0].'" width = "'.$src[1].'" height = "'.$src[2].'"/>';   
       $href = '';        
       if ($options['link'] == 'image' )
         $href =$image->guid;    
@@ -233,13 +337,13 @@ function ug_shortcode ($atts = array(), $content = '') {
       if ($options['link'] == 'page' )
         $href = get_permalink($image->ID);     
       
-      $a = '<a href="'.$href.'">'.$img.'</a>';
+      $a = '<a href="'.$href.'" '.$data_size.'>'.$img.'</a>';
       
       if ($options['link'] == 'none' ) {
         $a = $img;
       }
                     
-      $caption = '';               
+      $caption = null;               
       if (!empty($image->post_content))
         $caption = '<div class = "caption">' . $image->post_content . '</div>';
       
@@ -270,6 +374,7 @@ function ug_shortcode ($atts = array(), $content = '') {
           'title' => $title,
           'href' => $href,
           'caption' => $caption,
+          'data-size' => $data_size,
           
           'img' => $img,
           'a' => $a
@@ -362,6 +467,18 @@ function ug_settings_admin_init() {
           'manual' => __( 'Manual / <i>use shortcode [collage_gallery]</i>', 'collage-gallery' )
         )
       ),        
+   
+     array(
+        'name' => 'lightbox',
+        'label' => __( 'Use LightBox', 'collage-gallery' ),
+        'desc' => __( 'When clicked on image open it in lightbox or not.', 'collage-gallery' ),
+        'type' => 'radio',
+        'default' => 'no',
+        'options' => array(
+          'no' => __( 'No', 'collage-gallery' ),
+          'photoswipe' => __( 'PhotoSwipe <small>touch, mobile, responsive</small>', 'collage-gallery' )
+        )
+      ),
    
       array(
         'name' => 'insert_in',
