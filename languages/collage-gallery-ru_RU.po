@@ -1,0 +1,268 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Collage Gallery\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-04-11 23:34+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Aleksej Solovjov <ya@ukraya.ru>\n"
+"Language-Team: ukraya.ru <ya@ukraya.ru>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: RUSSIAN FEDERATION\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../collage-gallery.php:201
+msgid "Close (Esc)"
+msgstr "Закрыть (Esc)"
+
+#: ../collage-gallery.php:203
+msgid "Share"
+msgstr "Поделиться"
+
+#: ../collage-gallery.php:205
+msgid "Toggle fullscreen"
+msgstr "Полный экран"
+
+#: ../collage-gallery.php:207
+msgid "Zoom in/out"
+msgstr "Масштаб"
+
+#: ../collage-gallery.php:225
+msgid "Previous (arrow left)"
+msgstr "Назад (стрелка влево)"
+
+#: ../collage-gallery.php:228
+msgid "Next (arrow right)"
+msgstr "Вперед (стрелка вправо)"
+
+#: ../collage-gallery.php:438
+#: ../collage-gallery.php:637
+#: ../collage-gallery.php:639
+#: ../collage-gallery.php:653
+msgid "Collage Gallery"
+msgstr "Коллаж"
+
+#: ../collage-gallery.php:445
+msgid "Global Settings"
+msgstr "Основные настройки"
+
+#: ../collage-gallery.php:446
+msgid "Collage Gallery plugin global settings."
+msgstr "Основные настройки плагина."
+
+#: ../collage-gallery.php:452
+msgid "Collage Settings"
+msgstr "Настройки коллажа"
+
+#: ../collage-gallery.php:453
+msgid "Collage based on jQuery plugin \"Justified Gallery\" by <i>miromannino</i> (<a href = \"https://github.com/miromannino/Justified-Gallery\" target = \"_blank\">git</a>). Explanation of the settings are taken from plugin official <a href = \"http://miromannino.github.io/Justified-Gallery/\" target = \"_blank\">site</a>."
+msgstr "В основе коллажа лежит jQuery плагин \"Justified Gallery\" от <i>miromannino</i> (<a href = \"https://github.com/miromannino/Justified-Gallery\" target = \"_blank\">git</a>, официальный <a href = \"http://miromannino.github.io/Justified-Gallery/\" target = \"_blank\">сайт</a>)."
+
+#: ../collage-gallery.php:466
+msgid "Add to post"
+msgstr "Добавить в запись"
+
+#: ../collage-gallery.php:467
+msgid "Plugin can automatically convert all attached to the post images in a collage or you can use shortcode <i>[collage_gallery]</i>."
+msgstr "Плагин может автоматически преобразовать все прикрепленные к записи изображения в коллаж или вы можете использовать шорткод <i>[collage_gallery]</i>."
+
+#: ../collage-gallery.php:471
+msgid "Auto"
+msgstr "Автоматически"
+
+#: ../collage-gallery.php:472
+msgid "Manual / <i>use shortcode [collage_gallery]</i>"
+msgstr "Вручную / <i>используйте шорткод [collage_gallery]</i>"
+
+#: ../collage-gallery.php:478
+msgid "Where in the post position the collage gallery.<br/>Fires <strong>only</strong> if selected Add to post: <strong>Auto</strong>."
+msgstr "Где в записи поместить коллаж.<br/>Сработает <strong>только</strong> если выбрано Добавить в запись: <strong>Автоматически</strong>."
+
+#: ../collage-gallery.php:482
+msgid "Before content"
+msgstr "До контента"
+
+#: ../collage-gallery.php:483
+msgid "After content"
+msgstr "После контента"
+
+#: ../collage-gallery.php:489
+msgid "Use LightBox"
+msgstr "Лайтбокс"
+
+#: ../collage-gallery.php:490
+msgid "When clicked on image open it in lightbox or not."
+msgstr "При нажатии на фото, открыть его в лайтбоксе или нет."
+
+#: ../collage-gallery.php:494
+#: ../collage-gallery.php:582
+#: ../collage-gallery.php:593
+msgid "No"
+msgstr "Нет"
+
+#: ../collage-gallery.php:495
+msgid "PhotoSwipe <small>touch, mobile, responsive</small>"
+msgstr "PhotoSwipe <small>мобильный, с жестами, респонсивный</small>"
+
+#: ../collage-gallery.php:501
+msgid "Show in pages"
+msgstr "Показывать на"
+
+#: ../collage-gallery.php:502
+msgid "You can select the pages types on which will be added collage."
+msgstr "Вы можете выбрать типы страниц на которые будет добавлен коллаж."
+
+#: ../collage-gallery.php:506
+msgid "Front page, <small>is_front_page()</small>."
+msgstr "Домашняя страница, <small>is_front_page()</small>."
+
+#: ../collage-gallery.php:507
+msgid "Single (posts) pages, <small>is_single()</small>."
+msgstr "Страницы записей, <small>is_single()</small>."
+
+#: ../collage-gallery.php:508
+msgid "Tax pages, <small>is_tax()</small>."
+msgstr "Страницы таксономии, <small>is_tax()</small>."
+
+#: ../collage-gallery.php:514
+msgid "If one image"
+msgstr "Если одно фото"
+
+#: ../collage-gallery.php:515
+msgid "Actions, if only one image in post."
+msgstr "Действия, если у записи только одно фото."
+
+#: ../collage-gallery.php:519
+msgid "Hide image"
+msgstr "Скрыть фото"
+
+#: ../collage-gallery.php:520
+msgid "Show as Collage"
+msgstr "Показать как коллаж"
+
+#: ../collage-gallery.php:521
+msgid "Show as responsive image"
+msgstr "Показать как респонсивное фото"
+
+#: ../collage-gallery.php:527
+msgid "Link"
+msgstr "Ссылки"
+
+#: ../collage-gallery.php:528
+msgid "When click on image, opens..."
+msgstr "При нажатии на изображение в коллаже, откроется..."
+
+#: ../collage-gallery.php:532
+msgid "Image page / attachment page"
+msgstr "Страница изображения / attachment page"
+
+#: ../collage-gallery.php:533
+msgid "Image"
+msgstr "Изображение"
+
+#: ../collage-gallery.php:534
+msgid "Nothing happens"
+msgstr "Ничего не произойдет"
+
+#: ../collage-gallery.php:540
+msgid "post_meta name"
+msgstr "Имя post_meta"
+
+#: ../collage-gallery.php:541
+msgid "Add collage to post only if it has <i>post_meta</i> with given name. Leave blank if not required."
+msgstr "Добавить коллаж к записи только если она имеет post_meta с указанным именем. Оставьте пустым, если этого не требуется."
+
+#: ../collage-gallery.php:550
+msgid "Row Height"
+msgstr "Высота строки"
+
+#: ../collage-gallery.php:551
+msgid "The approximately height of rows in pixel (px).<br/>i.e.: <code>120</code>."
+msgstr "Ориетировочная высота строк с фото (в px).<br/>Например: <code>120</code>."
+
+#: ../collage-gallery.php:557
+msgid "Max&nbsp;row&nbsp;height"
+msgstr "Макс. высота строки"
+
+#: ../collage-gallery.php:558
+msgid "The maximum row height in pixel. Negative value to haven't limits. Zero to have a limit of <i>1.5 * Row Height</i>.<br/>i.e.: <code>0</code>."
+msgstr "Максимальная высота строки (в px). Если отрицательное значение - без ограничений. Если ноль: макс. высота = <i>1.5 * Высота строки</i>.<br/>Например, <code>0</code>."
+
+#: ../collage-gallery.php:564
+msgid "Last Row"
+msgstr "Последняя строка"
+
+#: ../collage-gallery.php:565
+msgid "Decide if you want to justify the last row or not, or to hide the row if it can't be justified."
+msgstr "Выравнивать ли изображения в последней строке на всю длину строки или нет."
+
+#: ../collage-gallery.php:569
+msgid "No Justify"
+msgstr "Не выравнивать"
+
+#: ../collage-gallery.php:570
+msgid "Justify"
+msgstr "Выравнивать"
+
+#: ../collage-gallery.php:571
+msgid "Hide"
+msgstr "Скрыть"
+
+#: ../collage-gallery.php:576
+msgid "Fixed Height"
+msgstr "Фикс. высота"
+
+#: ../collage-gallery.php:577
+msgid "Decide if you want to have a fixed height. This mean that all the rows will be exactly with the specified Row Height."
+msgstr "Должны ли все строки иметь одинаковую высоту. Если \"Да\", высота всех строк будет равно параметру <i>высота строки</i>."
+
+#: ../collage-gallery.php:581
+#: ../collage-gallery.php:592
+msgid "Yes"
+msgstr "Да"
+
+#: ../collage-gallery.php:587
+msgid "Caption"
+msgstr "Заголовки"
+
+#: ../collage-gallery.php:588
+msgid "Decide if you want to show the caption or not, that appears when your mouse is over the image."
+msgstr "Показывать ли заголовки изображений при наведении курсора мыши на фото."
+
+#: ../collage-gallery.php:598
+msgid "Margins"
+msgstr "Отступы"
+
+#: ../collage-gallery.php:599
+msgid "Decide the margins (px) between the images."
+msgstr "Размер отступов между изображениями (в px)."
+
+#: ../collage-gallery.php:605
+msgid "Border"
+msgstr "Рамки"
+
+#: ../collage-gallery.php:606
+msgid "Decide the border size (px) of the gallery. With a negative value the border will be the same as the margins."
+msgstr "Размер рамки вокруг изображений (в px). Если значение отрицательное рамка будет равна параметру <i>отступы</i>."
+
+#: ../collage-gallery.php:612
+msgid "CSS"
+msgstr "CSS"
+
+#: ../collage-gallery.php:613
+msgid "Add custom CSS."
+msgstr "Добавить CSS."
+
+#: ../collage-gallery.php:723
+msgid "Collage Gallery plugin <a href = \"http://ukraya.ru/collage-gallery/support\" target = \"_blank\">Support</a>"
+msgstr "<a href = \"http://ukraya.ru/collage_gallery/support\" target = \"_blank\">Помощь</a> и решение проблем по работе с плагином."
+
+#: ../inc/wp-settings-api-class.php:356
+msgid "None"
+msgstr "Ничего"
+
