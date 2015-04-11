@@ -3,7 +3,7 @@ Contributors: alekseysolo
 Tags: collage, gallery, attachments, images, photo, media, photoswipe
 Requires at least: 3.2
 Tested up to: 4.1
-Stable tag: 0.2
+Stable tag: 0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,6 +41,10 @@ Upload the Collage Gallery plugin to your blog and Activate it.
 3. Collage Gallery Settings page.
 
 == Changelog ==
+
+= 0.3 / 2015-04-11 =
+* Added option to positioned collage in post.
+* Fix minor bugs.
 
 = 0.2 / 2015-03-28 =
 * Added PhotoSwipe - touch, mobile, responsive lightbox.

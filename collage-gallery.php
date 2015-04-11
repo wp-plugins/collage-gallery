@@ -2,7 +2,7 @@
 /*
 Plugin Name: Collage Gallery
 Description: Plugin automatically create responsive collage gallery (like Google, Flickr, VK.com...) from images attached to the post with lightbox.
-Version: 0.2
+Version: 0.3
 Plugin URI: http://ukraya.ru/collage-gallery/
 Author: Aleksej Solovjov
 Author URI: http://ukraya.ru
@@ -394,8 +394,8 @@ function ug_shortcode ($atts = array(), $content = '') {
   return $out;
 }
 
-add_filter ('the_excerpt', 'ug_the_content_filter', 1);
-add_filter ('the_content', 'ug_the_content_filter', 1);
+add_filter ('the_excerpt', 'ug_the_content_filter');
+add_filter ('the_content', 'ug_the_content_filter');
 function ug_the_content_filter ($content) {
   global $post;
   $options = get_option('ug_options');
@@ -409,7 +409,12 @@ function ug_the_content_filter ($content) {
         $pattern = get_shortcode_regex();
         preg_match_all('/'.$pattern.'/s', $post->post_content, $matches);
         if ((!is_array($matches) || !in_array('collage_gallery', $matches[2]))) {
-          $content .= do_shortcode('[collage_gallery]');
+
+          if (isset($options['position']) && $options['position'] == 'before')
+            $content = do_shortcode('[collage_gallery]') . $content ;
+          else
+            $content .= do_shortcode('[collage_gallery]');
+                      
         }
         
         break;
@@ -466,7 +471,18 @@ function ug_settings_admin_init() {
           'auto' => __( 'Auto', 'collage-gallery' ),
           'manual' => __( 'Manual / <i>use shortcode [collage_gallery]</i>', 'collage-gallery' )
         )
-      ),        
+      ),
+      
+      array(
+        'name' => 'position',
+        'desc' => __( 'Where in the post position the collage gallery.<br/>Fires <strong>only</strong> if selected Add to post: <strong>Auto</strong>.', 'collage-gallery' ),
+        'type' => 'radio',
+        'default' => 'after',
+        'options' => array(
+          'before' => __( 'Before content', 'collage-gallery' ),
+          'after' => __( 'After content', 'collage-gallery' )
+        )                
+      ),              
    
      array(
         'name' => 'lightbox',
@@ -491,7 +507,7 @@ function ug_settings_admin_init() {
           'single' => __( 'Single (posts) pages, <small>is_single()</small>.', 'collage-gallery' ),
           'tax' => __( 'Tax pages, <small>is_tax()</small>.', 'collage-gallery' )
         )
-      ),
+      ), 
       
      array(
         'name' => 'one_image',
